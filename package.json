@@ -10,7 +10,9 @@
     "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
     "start": "remix-serve ./build/index.js",
     "typecheck": "tsc",
-    "generate": "drizzle-kit generate:pg"
+    "generate": "drizzle-kit generate:pg",
+    "drop": "drizzle-kit drop",
+    "db:push": "drizzle-kit push:pg"
   },
   "dependencies": {
     "@neondatabase/serverless": "^0.6.1",
