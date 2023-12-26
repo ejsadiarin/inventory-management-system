@@ -1,19 +1,36 @@
-import { integer, pgTable, serial, text, timestamp } from "drizzle-orm/pg-core";
+import { bigint, pgTable, serial, text, timestamp } from "drizzle-orm/pg-core";
 
-export const users = pgTable("users", {
-  id: serial("id").primaryKey(),
-  name: text("name"),
-  email: text("email"),
-  password: text("password"),
+export const user = pgTable("auth_user", {
+  id: text("id").primaryKey(),
+  username: text("username").notNull(),
   role: text("role").$type<"admin" | "customer">(),
   createdAt: timestamp("created_at"),
   updatedAt: timestamp("updated_at"),
 });
 
+export const key = pgTable("auth_key", {
+  id: text("id").primaryKey(),
+  userId: text("user_id")
+    .notNull()
+    .references(() => user.id),
+  hashed_password: text("hashed_password"),
+});
+
+export const session = pgTable("auth_session", {
+  id: text("id").primaryKey(),
+  userId: text("user_id")
+    .notNull()
+    .references(() => user.id),
+  activeExpires: bigint("active_expires", { mode: "number" }).notNull(),
+  idleExpires: bigint("idle_expires", { mode: "number" }).notNull(),
+});
+
 export const items = pgTable("items", {
   id: serial("id").primaryKey(),
+  userId: text("user_id")
+    .notNull()
+    .references(() => user.id),
   name: text("name"),
   description: text("description"),
   category: text("category"),
-  ownerId: integer("owner_id").references(() => users.id),
 });

@@ -15,7 +15,10 @@ export const meta: MetaFunction = () => {
   ];
 };
 
-export async function action({ request }: ActionFunctionArgs) {}
+export async function action({ request }: ActionFunctionArgs) {
+  // do logic for generating user
+  // do logic for generating item (if have auth setup: ...do based on user id)
+}
 
 export async function loader({ request }: LoaderFunctionArgs) {
   const response = await db.select().from(items);
@@ -34,11 +37,17 @@ export default function Index() {
         ))}
       </ul>
 
-      {/* <Form method="post"> */}
-      {/*   <button type="submit" value="Submit"> */}
-      {/*     Generate */}
-      {/*   </button> */}
-      {/* </Form> */}
+      <Form method="post">
+        <button type="submit" value="Submit">
+          Generate User
+        </button>
+      </Form>
+
+      <Form method="post">
+        <button type="submit" value="Submit">
+          Generate Item
+        </button>
+      </Form>
     </div>
   );
 }

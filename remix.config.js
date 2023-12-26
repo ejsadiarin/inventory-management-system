@@ -5,4 +5,10 @@ export default {
   // assetsBuildDirectory: "public/build",
   // publicPath: "/build/",
   // serverBuildPath: "build/index.js",
+  serverDependenciesToBundle: [
+    "lucia",
+    "lucia/middleware",
+    "lucia/polyfill/node",
+    "@lucia-auth/adapter-postgresql",
+  ],
 };
