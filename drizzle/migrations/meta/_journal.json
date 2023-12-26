@@ -1,12 +1,12 @@
 {
   "version": "5",
-  "dialect": "sqlite",
+  "dialect": "pg",
   "entries": [
     {
       "idx": 0,
       "version": "5",
-      "when": 1703509322401,
-      "tag": "0000_tough_galactus",
+      "when": 1703581176576,
+      "tag": "0000_uneven_wallop",
       "breakpoints": true
     }
   ]
