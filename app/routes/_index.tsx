@@ -3,9 +3,10 @@ import {
   type ActionFunctionArgs,
   type LoaderFunctionArgs,
   type MetaFunction,
+  redirect,
 } from "@remix-run/node";
 import { Form, useLoaderData } from "@remix-run/react";
-import { db } from "../db.server";
+import { dbHttp } from "../db.server";
 import { items } from "../../drizzle/schema";
 
 export const meta: MetaFunction = () => {
@@ -16,12 +17,11 @@ export const meta: MetaFunction = () => {
 };
 
 export async function action({ request }: ActionFunctionArgs) {
-  // do logic for generating user
-  // do logic for generating item (if have auth setup: ...do based on user id)
+  redirect("/signup");
 }
 
 export async function loader({ request }: LoaderFunctionArgs) {
-  const response = await db.select().from(items);
+  const response = await dbHttp.select().from(items);
   return json({ items: response });
 }
 
